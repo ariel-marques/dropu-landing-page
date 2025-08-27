@@ -1,0 +1,70 @@
+:root{
+  --stage-max-w: 980px;
+}
+
+/* ——— Seções de apoio ——— */
+.hero {
+  padding-block: 60vh 12vh;
+}
+.spacer {
+  height: 120vh;
+  background: #0f1115;
+  color: #9aa4b2;
+}
+
+/* ——— Stage do MacBook (pinnado) ——— */
+.macbook-stage-wrap {
+  position: relative;
+  padding-block: 0vh 18vh; /* respiro para a pinagem */
+  background: #0b0b0c;
+  color: #fff;
+  overflow: clip;
+}
+.macbook-stage {
+  position: relative;
+  width: min(var(--stage-max-w), 92vw);
+  margin: 0 auto;
+  aspect-ratio: 16/10;      /* ajuda no layout antes das imagens carregarem */
+}
+
+/* Layers do mockup */
+.macbook-frame,
+.finder-window,
+.dropu-shelf {
+  position: absolute;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  max-width: none;
+}
+.macbook-frame {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+/* Posicione a janela do Finder dentro do mockup */
+.finder-window {
+  width: 72%;  /* alinhe largura com a shelf */
+  left: 14%;
+  top: 18%;
+  z-index: 2;
+}
+
+/* Shelf começa abaixo do “dock” visual e sobe até encostar */
+.dropu-shelf {
+  width: 72%;
+  left: 14%;
+  top: 58%;                 /* base da janela do Finder */
+  transform: translateY(228vh); /* estado inicial deslocado p/ baixo */
+  will-change: transform;
+  z-index: 3;
+}
+
+/* Próxima seção (aparece quando o pin solta) */
+.next-section {
+  padding-block: 16vh;
+  background: #ffffff;
+}
