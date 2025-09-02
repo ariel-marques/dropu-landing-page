@@ -68,3 +68,112 @@
   padding-block: 16vh;
   background: #ffffff;
 }
+:root{
+    --bg: #EEE6FF;                /* fundo da section */
+    --cap: #eaf6f4;               /* cor da tecla */
+    --cap-accent: #7b61ff;        /* cor de destaque (ex: tecla ⌘) */
+    --legend: #263238;            /* cor do texto */
+    --shadow: rgba(14, 20, 34, .4);
+    --depth: 10px;                /* altura “3D” */
+    --press: 6px;                 /* quanto afunda ao clicar */
+    --radius: 12px;
+  }
+
+  .shortcuts-3d{
+    padding: 64px 24px;
+    background: var(--bg);
+    border-radius: 20px;
+    text-align: center;
+  }
+  .shortcuts-3d h3{ margin:0 0 6px }
+  .shortcuts-3d .sub{ margin:0 0 28px; color:#5b6470 }
+
+  /* palco 3D */
+  .keyboard{
+    display:inline-grid;
+    grid-auto-flow: column;
+    gap: 16px;
+    perspective: 800px;
+    padding: 24px;
+  }
+
+  /* base do botão (chassi) */
+  .keycap{
+    --this-cap: var(--cap);
+    position: relative;
+    width: 76px; height: 76px;
+    border: 0; background: transparent; cursor: pointer;
+    transform-style: preserve-3d;
+    border-radius: calc(var(--radius) + 4px);
+    outline: none;
+    /* “chão” + sombra projetada */
+    box-shadow:
+      0 20px 30px -10px rgba(0,0,0,.15),
+      0 6px 0 0 #d9dfe7;
+  }
+
+  /* top face flutuando acima do chassi */
+  .keycap .face{
+    position: absolute; inset: 0;
+    border-radius: var(--radius);
+    background: var(--this-cap);
+    display: grid; place-items: center;
+    transform: translateZ(var(--depth));
+    transition: transform .14s cubic-bezier(.2,.7,.2,1),
+                box-shadow .14s cubic-bezier(.2,.7,.2,1),
+                background .14s;
+    /* brilho e sombra da keycap */
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.7),
+      0 10px 0 0 #c9d1da,
+      0 18px 24px -12px var(--shadow);
+  }
+
+  /* legenda */
+  .legend{
+    font: 600 28px/1 system-ui, -apple-system, "SF Pro Display", Inter, Arial, sans-serif;
+    color: var(--legend);
+    user-select: none;
+    transform: translateY(-1px);
+  }
+
+  /* tecla acentuada (ex.: ⌘) */
+  .keycap:first-child{ --this-cap: var(--cap-accent) }
+  .keycap:first-child .legend{ color: #fff }
+
+  /* efeito hover = “pairar” leve */
+  .keycap:hover .face{
+    transform: translateZ(calc(var(--depth) + 2px));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.85),
+      0 10px 0 0 #b9c3cf,
+      0 22px 28px -10px var(--shadow);
+  }
+
+  /* efeito active = “afundar” */
+  .keycap:active .face,
+  .keycap.is-pressed .face{
+    transform: translateZ(calc(var(--depth) - var(--press)));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.6),
+      0 4px 0 0 #b1bcc8,
+      0 12px 16px -8px var(--shadow);
+  }
+
+  /* acessibilidade: foco visível */
+  .keycap:focus-visible .face{
+    outline: 3px solid #8aa1ff;
+    outline-offset: -4px;
+  }
+
+  /* reduz animações se o usuário preferir */
+  @media (prefers-reduced-motion: reduce){
+    .keycap .face{ transition: none }
+  }
+
+  /* lista explicativa */
+  .shortcut-list{
+    margin: 18px auto 0; padding:0; list-style:none; max-width:520px;
+    color:#3d4652
+  }
+  .shortcut-list li{ padding:4px 0 }
