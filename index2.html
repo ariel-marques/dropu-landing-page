@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Keypad 3D — demo</title>
+<style>
+  :root{
+    /* tokens rápidos */
+    --bg: #d7d9dd;
+    --tray: #454a52;
+    --tray-top: #2d3137;
+    --rim: #5b6069;
+    --key: #f2f5f8;
+    --key-edge: #cfd6de;
+    --legend: #44505c;
+    --accent: #ff7a1a;     /* cor do "GO" */
+    --accent-legend: #fff;
+    --depth: 26px;         /* altura “3D” das teclas */
+    --press: 10px;         /* quanto afunda ao clicar */
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box }
+  html, body { height: 100% }
+  body{
+    margin:0; background: var(--bg);
+    display:grid; place-items:center;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  }
+
+  /* palco com perspectiva */
+  .scene{
+    perspective: 1200px;
+  }
+
+  /* base (tray) */
+  .pad{
+    position: relative;
+    width: 520px; height: 360px;
+    transform-style: preserve-3d;
+    transform: rotateX(52deg) rotateZ(-35deg) translateZ(0);
+  }
+  /* base inferior (sombra volumétrica) */
+  .pad::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius: 32px;
+    background: radial-gradient(120% 120% at 30% 20%, #666b73 0 20%, #4b5058 45%, #3e434a 70%);
+    box-shadow:
+      0 40px 60px rgba(0,0,0,.28),
+      0 6px 0 0 #2a2f36;
+    transform: translateZ(-40px);
+  }
+  /* tampa superior com rebaixo */
+  .pad::after{
+    content:"";
+    position:absolute; inset:16px;
+    border-radius: 26px;
+    background:
+      linear-gradient(#3b4047, #2a2f36);
+    box-shadow:
+      inset 0 -8px 16px rgba(0,0,0,.35),
+      inset 0 10px 20px rgba(255,255,255,.06);
+    transform: translateZ(-2px);
+  }
+
+  /* “berço” onde as teclas sentam (um plate interno) */
+  .plate{
+    position:absolute; inset:52px;
+    border-radius: 22px;
+    background:
+      linear-gradient(#2c3138, #1f2328);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.06),
+      inset 0 -16px 30px rgba(0,0,0,.5);
+    transform: translateZ(0);
+  }
+
+  /* grade das teclas (2 col x 2 row) */
+  .keys{
+    position:absolute; inset:52px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 26px;
+    transform-style: preserve-3d;
+  }
+
+  /* tecla base: um “bloco” com topo elevado */
+  .key{
+    --cap: var(--key);
+    --text: var(--legend);
+    position: relative;
+    display: grid; place-items:center;
+    border:0; background: transparent; cursor: pointer;
+    transform-style: preserve-3d;
+    border-radius: calc(var(--radius) + 2px);
+    outline: none;
+  }
+  /* corpo da tecla (a “saia”) */
+  .key::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius: var(--radius);
+    background: linear-gradient(#e8edf3, #cdd5df 65%, #b7c0cb);
+    filter: saturate(.9);
+    transform: translateZ(calc(var(--depth) * -1));
+    box-shadow:
+      0 22px 30px rgba(0,0,0,.28),
+      0 8px 0 #aeb7c2;
+  }
+  /* topo da tecla (cap) — flutua acima do corpo */
+  .key .cap{
+    position:absolute; inset:0;
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, #fff 0%, var(--cap) 35% 100%);
+    transform: translateZ(var(--depth));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.9),
+      0 10px 0 #c3ccd6,
+      0 22px 24px -12px rgba(0,0,0,.22);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  /* brilho diagonal sutil */
+  .key .cap::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255,255,255,.65), rgba(255,255,255,0) 40%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  /* legenda */
+  .key .label{
+    position: relative; z-index: 2;
+    font-weight: 600; letter-spacing:.02em;
+    color: var(--text);
+    transform: translateZ(calc(var(--depth) + 1px));
+    user-select: none;
+  }
+
+  /* variação da tecla GO (laranja) */
+  .key--go{ --cap: var(--accent); }
+  .key--go .label{ color: var(--accent-legend); }
+  .key--go .cap{
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.7),
+      0 10px 0 #e06914,
+      0 22px 24px -12px rgba(0,0,0,.25);
+  }
+
+  /* estados */
+  .key:hover .cap{
+    transform: translateZ(calc(var(--depth) + 2px));
+  }
+  .key:active .cap,
+  .key.is-pressed .cap{
+    transform: translateZ(calc(var(--depth) - var(--press)));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.6),
+      0 6px 0 #a8b1bc,
+      0 14px 18px -10px rgba(0,0,0,.28);
+  }
+
+  /* posições (arranjo parecido com a referência) */
+  .k1{ grid-column: 2; grid-row: 1; }
+  .k2{ grid-column: 3; grid-row: 1; }
+  .k0{ grid-column: 1; grid-row: 1; }
+  .kgo{ grid-column: 1; grid-row: 2; }
+
+  /* tamanhos */
+  .key{ width: 130px; height: 110px; }
+  .key .label{ font-size: 34px }
+
+  /* acessibilidade: foco */
+  .key:focus-visible .cap{
+    outline: 4px solid rgba(138,161,255,.9);
+    outline-offset: -4px;
+  }
+
+  /* responsivo simples */
+  @media (max-width: 640px){
+    .pad{ width: 380px; height: 280px }
+    .keys{ gap: 18px; inset: 40px }
+    .key{ width: 100px; height: 88px }
+    .key .label{ font-size: 28px }
+  }
+</style>
+</head>
+<body>
+
+<div class="scene" aria-label="Keypad 3D">
+  <div class="pad" role="group" aria-label="Atalhos">
+    <div class="plate"></div>
+
+    <div class="keys">
+      <button class="key k0" data-key="0" aria-label="Zero">
+        <div class="cap"></div>
+        <span class="label">0</span>
+      </button>
+
+      <button class="key k1" data-key="1" aria-label="Um">
+        <div class="cap"></div>
+        <span class="label">1</span>
+      </button>
+
+      <button class="key k2" data-key="2" aria-label="Dois">
+        <div class="cap"></div>
+        <span class="label">2</span>
+      </button>
+
+      <button class="key key--go kgo" data-key="go" aria-label="Ir (GO)">
+        <div class="cap"></div>
+        <span class="label">GO</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Press feedback (mouse/teclado) + clique da GO
+  const keys = Array.from(document.querySelectorAll('.key'));
+
+  keys.forEach(k => {
+    k.addEventListener('mousedown', () => k.classList.add('is-pressed'));
+    k.addEventListener('mouseup',   () => k.classList.remove('is-pressed'));
+    k.addEventListener('mouseleave',() => k.classList.remove('is-pressed'));
+    k.addEventListener('touchstart',() => k.classList.add('is-pressed'), {passive:true});
+    k.addEventListener('touchend',  () => k.classList.remove('is-pressed'));
+
+    k.addEventListener('click', () => {
+      const v = k.dataset.key;
+      if(v === 'go'){
+        // ✅ AÇÃO DO BOTÃO GO — troque pelo que quiser
+        console.log('GO clicado! Navegar/acionar feature…');
+        // window.location.href = '#seu-target';
+      } else {
+        console.log('Tecla', v, 'clicada');
+      }
+    });
+  });
+
+  // Mapeia teclado físico para feedback visual (opcional)
+  const map = { '0':'0', '1':'1', '2':'2', 'Enter':'go' };
+  window.addEventListener('keydown', (e) => {
+    const target = map[e.key];
+    if(!target) return;
+    const btn = keys.find(k => k.dataset.key === target);
+    if(btn) btn.classList.add('is-pressed');
+  });
+  window.addEventListener('keyup', (e) => {
+    const target = map[e.key];
+    if(!target) return;
+    const btn = keys.find(k => k.dataset.key === target);
+    if(btn) btn.classList.remove('is-pressed');
+  });
+</script>
+</body>
+</html>

@@ -1,6 +1,156 @@
+/* =========================
+   HERO • Shelfinder (SVG de fundo, sem distorção)
+   ========================= */
+
 :root{
-  --stage-max-w: 980px;
+  --hero-frame: clamp(16px, 4vw, 40px); /* respiro ao redor da hero */
+  --maxw: 1100px;
+
+  --file: #0B0B0C;  /* preto global */
+  --text: #fff;
+  --muted: #9aa4b2;
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text","SF Pro Display",
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji","Segoe UI Emoji";
 }
+
+html, body { height: 100%; }
+body{
+  margin: 0;
+  background: var(--file);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Wrapper: só padding externo da seção */
+.hero-wrap{
+  padding: var(--hero-frame);
+}
+
+/* A hero em si controla a altura */
+.file-hero{
+  position: relative;
+  min-height: 92svh;
+  width: 100%;
+  overflow: hidden;   /* corta excesso do SVG ao usar 'slice' */
+  isolation: isolate;
+}
+
+/* SVG cobre toda a hero, ancorado top-left e sem deformar */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;          /* ocupa toda a largura da seção */
+  height: auto;         /* mantém a proporção original */
+  min-height: 100%;     /* garante que cobre a altura da hero */
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Conteúdo por cima do SVG */
+.hero-inner{
+  position: relative;
+  z-index: 1;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 36px);
+}
+
+/* Grid e tipografia */
+
+.app-icon{
+  width: clamp(56px, 7vw, 76px);
+  height: clamp(56px, 7vw, 76px);
+  flex: 0 0 auto;
+}
+.headline{
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: clamp(36px, 6vw, 64px);
+  margin: 0;
+}
+.subtitle{
+  font-size: clamp(16px, 2.6vw, 22px);
+  color: #cfd6df;
+  margin: 0;
+}
+.lead-copy{
+  color: var(--muted);
+  font-size: clamp(14px, 2.15vw, 18px);
+  max-width: 52ch;
+}
+
+/* Mockup */
+.mockup-wrap{
+  position: relative;
+  max-width: min(980px, 92vw); /* centralizado e largo no desktop */
+  margin: 18px auto 0;
+}
+.finder-shot{
+  width: 100%;
+  height: auto;
+  border-radius: clamp(14px, 2vw, 22px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  display: block;
+}
+
+/* CTAs */
+.btn-cta{
+  padding: .9rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.btn-download{ background: #0E62FF; border: 0; color: #fff; }
+.btn-upgrade{ background: transparent; border: 1px solid #3a3f46; color: #fff; }
+.meta{ color: var(--muted); font-size: .95rem; }
+
+/* ===== Ajustes de disposição no DESKTOP ===== */
+@media (min-width: 992px){
+  .hero-grid{ row-gap: 24px; }           /* separa as “linhas” */
+  .cta-bar{ margin-top: 18px; }          /* respiro entre mockup e botões */
+  .hero-inner{ padding-top: clamp(24px, 4vh, 56px); }
+  .meta { text-align: center; }          /* metas centralizadas como no mockup */
+}
+
+/* Espaçamento em mobile */
+@media (max-width: 992px){
+  .mockup-wrap{ margin-top: 16px; }
+}
+@media (max-width: 420px){
+  .meta{ font-size: .9rem; }
+}
+
+/* garante boa largura e alinhamento do mockup no desktop */
+@media (min-width: 992px){
+  .mockup-wrap.lg-right{
+    max-width: 660px;        /* ajuste fino conforme seu asset */
+    margin-left: auto;       /* encosta na direita da coluna */
+  }
+  .hero-inner{
+    padding-top: clamp(16px, 3vh, 48px);
+  }
+}
+
+/* respiro em mobile entre texto e imagem */
+@media (max-width: 991.98px){
+  .mockup-wrap{ margin-top: 20px; }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* ——— Seções de apoio ——— */
 .hero {
@@ -177,3 +327,4 @@
     color:#3d4652
   }
   .shortcut-list li{ padding:4px 0 }
+
