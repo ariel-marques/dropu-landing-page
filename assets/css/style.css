@@ -9,6 +9,7 @@
   --file: #0B0B0C;  /* preto global */
   --text: #fff;
   --muted: #9aa4b2;
+  --redblue-gradient: linear-gradient(90deg, #E1704F, #CF617E, #6B84BC);
 
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text","SF Pro Display",
           "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji","Segoe UI Emoji";
@@ -132,7 +133,7 @@ body{
     margin-left: auto;       /* encosta na direita da coluna */
   }
   .hero-inner{
-    padding-top: clamp(16px, 3vh, 48px);
+    padding-top: clamp(96px, 3vh, 48px);
   }
 }
 
@@ -141,7 +142,23 @@ body{
   .mockup-wrap{ margin-top: 20px; }
 }
 
+/* ===== Big Title Gradient ===== */
 
+
+.big-gradient-title {
+  font-size: clamp(36px, 8vw, 92px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.big-gradient-title span {
+  background: var(--redblue-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
 
 
 
@@ -157,29 +174,28 @@ body{
   padding-block: 60vh 12vh;
 }
 .spacer {
-  height: 120vh;
-  background: #0f1115;
+  height: 40vh;               /* ajuste livre */
   color: #9aa4b2;
 }
 
 /* ——— Stage do MacBook (pinnado) ——— */
 .macbook-stage-wrap {
   position: relative;
-  padding-block: 0vh 18vh; /* respiro para a pinagem */
-  background: #0b0b0c;
+  min-height: 100vh;          /* garante área para o pin */
+  padding-block: 0 18vh;
   color: #fff;
   overflow: clip;
 }
+
 .macbook-stage {
   position: relative;
-  width: min(var(--stage-max-w), 92vw);
+  width: min(var(--stage-max-w, 980px), 92vw);
   margin: 0 auto;
-  aspect-ratio: 16/10;      /* ajuda no layout antes das imagens carregarem */
+  aspect-ratio: 16/10;
 }
 
 /* Layers do mockup */
 .macbook-frame,
-.finder-window,
 .dropu-shelf {
   position: absolute;
   display: block;
@@ -187,6 +203,7 @@ body{
   pointer-events: none;
   max-width: none;
 }
+
 .macbook-frame {
   inset: 0;
   width: 100%;
@@ -203,12 +220,12 @@ body{
   z-index: 2;
 }
 
-/* Shelf começa abaixo do “dock” visual e sobe até encostar */
+/* Shelf: mesma largura/left do Finder (que está no mockup) */
 .dropu-shelf {
   width: 72%;
   left: 14%;
-  top: 58%;                 /* base da janela do Finder */
-  transform: translateY(228vh); /* estado inicial deslocado p/ baixo */
+  top: 58%;
+  transform: translateY(28vh);   /* estado inicial: fora do ponto de encaixe */
   will-change: transform;
   z-index: 3;
 }

@@ -11,67 +11,72 @@
 
 <body>
 
-<section class="file-hero">
-  <svg  class="hero-bg" width="1728" height="3411" viewBox="0 0 1728 3411" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1728" height="3411" fill="black"/>
+  <section class="file-hero">
+<svg class="hero-bg" width="1728" height="3411" viewBox="0 0 1728 3411" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1728 3410.5H1693L1693 343.889C1693 321.594 1685.55 299.939 1671.83 282.363L1508.03 72.4756C1489.08 48.1943 1459.99 34 1429.19 34H81C55.0426 34 34 55.0426 34 81V3410.5H0L0 0H1728L1728 3410.5Z" fill="#FF9FB6"/>
 </svg>
 
 
-  <div class="hero-inner container mt-4">
-    <div class="row mt-5">
-      <!-- Texto/heading -->
-      <div class="col-12 col-lg-6 mt-5">
-        <div class="d-flex align-items-center gap-3 mb-3">
-          <img class="app-icon" src="assets/images/Icon.png" alt="Shelfinder app icon">
-          <div>
-            <h1 class="headline m-0">Shelfinder</h1>
-            <p class="subtitle m-0">Instant Drag &amp; Drop for Mac</p>
+
+    <div class="hero-inner container mt-4">
+      <div class="row mt-5">
+        <!-- Texto/heading -->
+        <div class="col-12 col-lg-6 mt-5">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <img class="app-icon" src="assets/images/Icon.png" alt="Shelfinder app icon">
+            <div>
+              <h1 class="headline m-0">Shelfinder</h1>
+              <p class="subtitle m-0">Instant Drag &amp; Drop for Mac</p>
+            </div>
+          </div>
+          <p class="lead-copy mb-4">
+            Shelfinder is a floating shelf for Mac that lets you collect, pin, and move files instantly.
+          </p>
+        </div>
+
+        <!-- Mockup centralizado (linha própria no desktop) -->
+        <div class="col-12 col-lg-6">
+          <div class="mockup-wrap mx-auto">
+            <img class="finder-shot" src="assets/images/finder-dropu.png" alt="Finder window">
+            <!-- se tiver a imagem da shelf separada, pode adicionar aqui -->
           </div>
         </div>
-        <p class="lead-copy mb-4">
-          Shelfinder is a floating shelf for Mac that lets you collect, pin, and move files instantly.
-        </p>
-      </div>
 
-      <!-- Mockup centralizado (linha própria no desktop) -->
-      <div class="col-12 col-lg-6">
-        <div class="mockup-wrap mx-auto">
-          <img class="finder-shot" src="assets/images/finder-dropu.png" alt="Finder window">
-          <!-- se tiver a imagem da shelf separada, pode adicionar aqui -->
+        <!-- CTAs e metadados centralizados -->
+        <div class="col-12 mt-4">
+          <div class="cta-bar d-flex justify-content-center flex-wrap gap-2 mb-3">
+            <a class="btn btn-cta btn-download" href="#download">Download</a>
+            <a class="btn btn-cta btn-upgrade" href="#upgrade">Upgrade to Pro</a>
+          </div>
+
+          <p class="meta text-center mb-1">
+            One-time purchase — <strong>$3.99 USD</strong> · Up to 2 Macs · Try free for 7 days
+          </p>
+          <p class="meta text-center mb-0">
+            Requires macOS 13 Ventura or later · Apple Silicon &amp; Intel compatible
+          </p>
         </div>
-      </div>
-
-      <!-- CTAs e metadados centralizados -->
-      <div class="col-12 mt-4">
-        <div class="cta-bar d-flex justify-content-center flex-wrap gap-2 mb-3">
-          <a class="btn btn-cta btn-download" href="#download">Download</a>
-          <a class="btn btn-cta btn-upgrade" href="#upgrade">Upgrade to Pro</a>
-        </div>
-
-        <p class="meta text-center mb-1">
-          One-time purchase — <strong>$3.99 USD</strong> · Up to 2 Macs · Try free for 7 days
-        </p>
-        <p class="meta text-center mb-0">
-          Requires macOS 13 Ventura or later · Apple Silicon &amp; Intel compatible
-        </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
   <!-- Um pouco de conteúdo antes do stage (opcional) -->
-  <div class="spacer d-flex align-items-center justify-content-center">
-    <p class="m-0">Continue rolando…</p>
+  <div class="spacer d-flex">
+    <div class="container">
+    <h2 class="big-gradient-title mt-5 text-white">
+      Clean <span>design.</span><br>
+      Smooth <span>experience.</span>
+    </h2>
+    </div>
   </div>
 
   <!-- ====== STAGE PINNADO ====== -->
   <section id="stage" class="macbook-stage-wrap">
     <div class="macbook-stage" id="macbookStage">
       <!-- Troque pelos seus assets reais -->
-      <img class="macbook-frame"  src="assets/images/macbook-shell.png"    alt="MacBook mockup">
-      <img class="dropu-shelf"    src="assets/images/dropu.png" alt="DropU shelf">
+      <img class="macbook-frame" src="assets/images/macbook-shell.png" alt="MacBook mockup">
+      <img class="dropu-shelf" src="assets/images/dropu.png" alt="DropU shelf">
     </div>
   </section>
 
@@ -79,30 +84,30 @@
   <section class=" shortcuts-3d next-section">
     <div class="container">
       <h2 class="h1 fw-bold mb-3">Próxima seção</h2>
-  <h3>Atalhos que você vai usar todo dia</h3>
-  <p class="sub">Passe o mouse e clique para sentir o “press”.</p>
+      <h3>Atalhos que você vai usar todo dia</h3>
+      <p class="sub">Passe o mouse e clique para sentir o “press”.</p>
 
-  <div class="keyboard" aria-label="Teclado de atalhos">
-    <!-- cada tecla é um botão acessível -->
-    <button class="keycap" data-combo="⌘" aria-label="Command">
-      <span class="face"><span class="legend">⌘</span></span>
-    </button>
-    <button class="keycap" data-combo="Z" aria-label="Undo">
-      <span class="face"><span class="legend">Z</span></span>
-    </button>
-    <button class="keycap" data-combo="C" aria-label="Copy">
-      <span class="face"><span class="legend">C</span></span>
-    </button>
-    <button class="keycap" data-combo="V" aria-label="Paste">
-      <span class="face"><span class="legend">V</span></span>
-    </button>
-  </div>
+      <div class="keyboard" aria-label="Teclado de atalhos">
+        <!-- cada tecla é um botão acessível -->
+        <button class="keycap" data-combo="⌘" aria-label="Command">
+          <span class="face"><span class="legend">⌘</span></span>
+        </button>
+        <button class="keycap" data-combo="Z" aria-label="Undo">
+          <span class="face"><span class="legend">Z</span></span>
+        </button>
+        <button class="keycap" data-combo="C" aria-label="Copy">
+          <span class="face"><span class="legend">C</span></span>
+        </button>
+        <button class="keycap" data-combo="V" aria-label="Paste">
+          <span class="face"><span class="legend">V</span></span>
+        </button>
+      </div>
 
-  <ul class="shortcut-list">
-    <li><strong>⌘ + Z</strong> — Undo</li>
-    <li><strong>⌘ + C</strong> — Copy</li>
-    <li><strong>⌘ + V</strong> — Paste</li>
-  </ul>
+      <ul class="shortcut-list">
+        <li><strong>⌘ + Z</strong> — Undo</li>
+        <li><strong>⌘ + C</strong> — Copy</li>
+        <li><strong>⌘ + V</strong> — Paste</li>
+      </ul>
     </div>
   </section>
 
