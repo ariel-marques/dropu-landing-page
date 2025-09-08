@@ -9,8 +9,9 @@
   --file: #0B0B0C;  /* preto global */
   --text: #fff;
   --muted: #9aa4b2;
+  --purpleorange-gradient: linear-gradient(90deg,#7549F2,#DF58D2,#ED787C);
   --redblue-gradient: linear-gradient(90deg, #E1704F, #CF617E, #6B84BC);
-
+  --peachpink-gradient: linear-gradient(90deg, #FC646B, #FF68BE);
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text","SF Pro Display",
           "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji","Segoe UI Emoji";
 }
@@ -183,11 +184,91 @@ body{
   color: transparent;
 }
 
+.section-native{
+  position: relative;      /* cria contexto p/ z-index */
+  z-index: 0;
+  background: #fff;        /* já estava assim */
+  padding-bottom: clamp(24px, 4vw, 48px);  /* respiro p/ sobreposição */
+  margin-bottom: 0;        /* evita gap preto por colapso */
+}
+
+/* Título grande com gradient */
+.display-gradient{
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-size: clamp(50px, 6.5vw, 89px);
+  margin: 0;
+  background: var(--purpleorange-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Imagem centralizada, sem shadow */
+.native-mockup{
+  max-width: min(980px, 92vw);
+}
+.native-mockup img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;     /* combina com o mockup; remova se não quiser */
+  box-shadow: none;        /* sem sombra */
+}
+
+/* Parágrafo centralizado, largura confortável */
+.native-copy{
+  max-width: 60ch;
+  font-size: clamp(20px, 2.2vw, 18px);
+  color: #2b2f36;
+}
+
+.section-files{
+  position: relative;
+  z-index: 1;              /* fica acima da anterior */
+  margin-top: clamp(-89px, -6vw, -80px);  /* puxa para cima */
+  background: #1E64A3;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+  padding-block: clamp(60px, 10vw, 100px);
+}
+
+.section-files::before{
+  content:"";
+  position:absolute; left:0; right:0; top:-1px; height:1px;
+  background: rgba(0,0,0,0.06);        /* linha sutil contra o branco */
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+}
 
 
+/* Título com gradient peach-pink */
+.files-title {
+  font-weight: 600;
+  line-height: 1.1;
+  font-size: clamp(50px, 6.5vw, 89px);
+  background: var(--peachpink-gradient);
+  letter-spacing: -0.04em;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
 
+/* Texto secundário */
+.files-copy {
+  font-size: clamp(14px, 2.2vw, 18px);
+  max-width: 52ch;
+  margin: 0;
+}
 
-
+/* Imagem */
+.files-illustration img {
+  max-width: 100%;
+  display: block;
+}
 
 
 
@@ -275,7 +356,7 @@ body{
   .shortcuts-3d{
     padding: 64px 24px;
     background: var(--bg);
-    border-radius: 20px;
+    border-radius: 70px;
     text-align: center;
   }
   .shortcuts-3d h3{ margin:0 0 6px }
