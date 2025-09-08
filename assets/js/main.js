@@ -36,6 +36,50 @@ tl.to([".macbook-frame", ".finder-window", ".dropu-shelf"], {
 //   Garanta mesma left/width e um top da shelf que fique logo sob a base da janela.
 // - Ajuste end/durations para calibrar a distância de scroll de cada fase.
 
+ gsap.registerPlugin(Flip);
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 992px)", () => {
+    const slider = document.getElementById("filesSlider");
+
+    function rotateStack() {
+      // estado antes de mexer no DOM
+      const state = Flip.getState(".files-slider .file");
+
+      // mover o último para a frente (efeito carrossel)
+      const last = slider.lastElementChild;
+      slider.insertBefore(last, slider.firstElementChild);
+
+      // animar as mudanças de posição
+      Flip.from(state, {
+        targets: ".files-slider .file",
+        duration: 0.7,
+        ease: "sine.inOut",
+        absolute: true,
+        stagger: 0.02,
+        onEnter: (els) => gsap.from(els, { yPercent: 20, opacity: 0, ease: "expo.out", duration: 0.6 }),
+        onLeave: (els) => gsap.to(els, {
+          yPercent: 20, xPercent: -18, opacity: 0,
+          transformOrigin: "bottom left",
+          ease: "expo.out", duration: 0.6
+        })
+      });
+    }
+
+    // clique para avançar
+    slider.addEventListener("click", rotateStack);
+
+    // opcional: auto-loop a cada 2.5s
+    // const loop = setInterval(rotateStack, 2500);
+    // slider.addEventListener("mouseenter", () => clearInterval(loop));
+  });
+
+  // mobile: garante que não fique resíduo de animação
+  mm.add("(max-width: 991.98px)", () => {
+    gsap.killTweensOf(".files-slider .file");
+  });
+
  // feedback real de clique + suporte a teclado
   const keys = document.querySelectorAll('.keycap');
 
