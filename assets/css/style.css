@@ -38,6 +38,24 @@ body{
   overflow: hidden;
   isolation: isolate;
 }
+/* Fade no mobile (<992px) */
+  .file-hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 350px; /* altura do fade, ajusta se quiser mais/menos suave */
+    background: linear-gradient(to bottom, rgba(11,11,12,0) 0%, #0B0B0C 100%);
+    z-index: 0; /* acima do SVG, mas abaixo do conteúdo */
+    pointer-events: none;
+
+  /* garante que o conteúdo continue acima do gradiente */
+  .hero-inner {
+    position: relative;
+    z-index: 3;
+  }
+}
 
 /* Melhor ainda: usa dvh quando suportado (viewport dinâmico) */
 @supports (height: 100dvh){
