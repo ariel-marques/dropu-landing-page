@@ -54,7 +54,7 @@ tl.to([".macbook-frame", ".finder-window", ".dropu-shelf"], {
       // animar as mudanças de posição
       Flip.from(state, {
         targets: ".files-slider .file",
-        duration: 0.7,
+        duration: 0.1,
         ease: "sine.inOut",
         absolute: true,
         stagger: 0.02,
