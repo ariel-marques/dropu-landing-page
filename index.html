@@ -12,11 +12,9 @@
 <body>
 
   <section class="file-hero">
-<svg class="hero-bg" width="1728" height="3411" viewBox="0 0 1728 3411" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1728 3410.5H1693L1693 343.889C1693 321.594 1685.55 299.939 1671.83 282.363L1508.03 72.4756C1489.08 48.1943 1459.99 34 1429.19 34H81C55.0426 34 34 55.0426 34 81V3410.5H0L0 0H1728L1728 3410.5Z" fill="#FF9FB6"/>
-</svg>
-
-
+    <svg class="hero-bg" width="1728" height="4103" viewBox="0 0 1728 4103" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1728 4103H1693L1693 413.715C1693 386.894 1685.55 360.841 1671.83 339.697L1508.03 87.1917C1489.08 57.9801 1459.99 40.9037 1429.19 40.9037H81C55.0426 40.9037 34 66.219 34 97.447V4103H0L0 0H1728L1728 4103Z" fill="#FF9FB6"/>
+    </svg>
 
     <div class="hero-inner container mt-4">
       <div class="row mt-5">
@@ -44,9 +42,13 @@
 
         <!-- CTAs e metadados centralizados -->
         <div class="col-12 mt-4">
-          <div class="cta-bar d-flex justify-content-center flex-wrap gap-2 mb-3">
-            <a class="btn btn-cta btn-download" href="#download">Download</a>
-            <a class="btn btn-cta btn-upgrade" href="#upgrade">Upgrade to Pro</a>
+          <div class="d-flex justify-content-center flex-wrap gap-1 mb-3">
+            <button data-items="#" class="paddle_button btn btn-outline-primary btn-lg mb-4 text-white shadow paddle_styled_button" data-init="true">
+        Download Free Version
+      </button>
+      <button data-items="#" class="paddle_button btn btn-primary btn-lg mb-4 shadow paddle_styled_button" data-init="true">
+        Upgrade to Pro
+      </button>
           </div>
 
           <p class="meta text-center mb-1">
@@ -61,24 +63,44 @@
   </section>
 
 
-  <!-- Um pouco de conteúdo antes do stage (opcional) -->
+<!-- ===== DESKTOP (≥992px) ===== -->
+<div class="d-none d-lg-block">
+  <!-- Spacer com título gradient -->
   <div class="spacer d-flex">
     <div class="container">
-    <h2 class="big-gradient-title mt-5 text-white">
-      Clean <span>design.</span><br>
-      Smooth <span>experience.</span>
-    </h2>
+      <h2 class="big-gradient-title mt-5 text-white">
+        Clean <span>design.</span><br>
+        Smooth <span>experience.</span>
+      </h2>
     </div>
   </div>
 
-  <!-- ====== STAGE PINNADO ====== -->
+  <!-- Stage pinnado com animação -->
   <section id="stage" class="macbook-stage-wrap">
-    <div class="macbook-stage" id="macbookStage">
-      <!-- Troque pelos seus assets reais -->
-      <img class="macbook-frame" src="assets/images/macbook-shell.png" alt="MacBook mockup">
-      <img class="dropu-shelf" src="assets/images/dropu.png" alt="DropU shelf">
+    <div class="macbook-stage">
+      <img class="macbook-frame" src="assets/images/macbook-shelf.png" alt="MacBook mockup">
+      <img class="dropu-shelf"  src="assets/images/dropu.png"         alt="DropU shelf">
     </div>
   </section>
+</div>
+
+<!-- ===== MOBILE (<992px) ===== -->
+<div class="d-lg-none">
+  <section class="mobile-stage">
+    <div class="container py-5">
+      <h2 class="big-gradient-title mb-4 text-white">
+        Clean <span>design.</span><br>
+        Smooth <span>experience.</span>
+      </h2>
+
+      <!-- Sem animação: mockup + shelf empilhados -->
+      <div class="mobile-mockup">
+        <img class="finder-shot" src="assets/images/macbook-shelf-mobile.png" alt="MacBook mockup">
+      </div>
+    </div>
+  </section>
+</div>
+
 
   <!-- Próxima seção (aparece depois que o stage sai da tela) -->
   <section class=" shortcuts-3d next-section">
