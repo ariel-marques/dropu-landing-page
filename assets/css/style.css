@@ -259,7 +259,6 @@ body{
 /* Texto secundário */
 .files-copy {
   font-size: clamp(14px, 2.2vw, 18px);
-  max-width: 60ch;
   margin: 0;
 }
 
