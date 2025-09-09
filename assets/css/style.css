@@ -267,7 +267,7 @@ body{
 .files-illustration { position: relative; }
 .files-slider{
   position: relative;
-  width: clamp(220px, 32vw, 420px);  /* tamanho responsivo */
+  width: clamp(180px, 32vw, 400px);  /* tamanho responsivo */
   aspect-ratio: 452/592;
 }
 
@@ -280,13 +280,14 @@ body{
   will-change: transform, opacity;
   border-radius: 28px;          /* arredonda os SVGs iguais ao exemplo */
   overflow: hidden;
-}
+  }
 
 /* offsets iniciais para criar “escadinha” (ajuste fino se quiser) */
-.files-slider .file:nth-child(1){ transform: translate(0, 0);                 z-index: 4; }
-.files-slider .file:nth-child(2){ transform: translate(10%, -10%);            z-index: 3; }
-.files-slider .file:nth-child(3){ transform: translate(20%, -18%);            z-index: 2; }
-.files-slider .file:nth-child(4){ transform: translate(30%, -26%);            z-index: 1; }
+.files-slider .file:nth-child(1){ transform: translate(-0%, -7%);     z-index: 5; }
+.files-slider .file:nth-child(2){ transform: translate(10%, -7%);     z-index: 4; }
+.files-slider .file:nth-child(3){ transform: translate(-10%, -7%);     z-index: 3; }
+.files-slider .file:nth-child(4){ transform: translate(-20%, -7%);     z-index: 2; }
+.files-slider .file:nth-child(5){transform: translate(20%, -7%);     z-index: 1; }
 
 /* mobile: sem animação, mas mantém a composição */
 @media (max-width: 991.98px){
