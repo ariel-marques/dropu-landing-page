@@ -269,6 +269,7 @@ body{
   position: relative;
   width: clamp(180px, 32vw, 400px);  /* tamanho responsivo */
   aspect-ratio: 452/592;
+  margin: 0 auto;
 }
 
 /* cada file ocupa a área e é posicionada via transform */
@@ -291,7 +292,7 @@ body{
 
 /* mobile: sem animação, mas mantém a composição */
 @media (max-width: 991.98px){
-  .files-slider{ margin: 0 auto; } /* centraliza no mobile */
+  /* regras específicas para mobile podem ser adicionadas aqui se necessário */
 }
 
 
