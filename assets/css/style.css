@@ -9,6 +9,8 @@
   --file: #0B0B0C;  /* preto global */
   --text: #fff;
   --muted: #9aa4b2;
+  --pin-green: #0B8494;
+  --orange-gradient: linear-gradient(90deg, #ED826E, #E14E38);
   --purpleorange-gradient: linear-gradient(90deg,#7549F2,#DF58D2,#ED787C);
   --redblue-gradient: linear-gradient(90deg, #E1704F, #CF617E, #6B84BC);
   --peachpink-gradient: linear-gradient(90deg, #FC646B, #FF68BE);
@@ -293,6 +295,74 @@ body{
 @media (max-width: 991.98px){
   /* regras específicas para mobile podem ser adicionadas aqui se necessário */
 }
+
+
+/* container da seção */
+.section-pin{
+  position: relative;
+  z-index: 1;              /* fica acima da anterior */
+  margin-top: clamp(-89px, -6vw, -80px);  /* puxa para cima */
+  background: var(--pin-green);
+  border-radius: 80px;
+  padding-block: clamp(56px, 8vw, 104px);
+  overflow: hidden;
+}
+
+/* grid: título no topo, shelf central, copy alinhada à direita */
+.pin-grid{
+  row-gap: clamp(20px, 3vw, 32px);
+  align-items: center;                /* centraliza verticalmente shelf/copy */
+}
+
+/* título grande com gradient */
+.pin-title{
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-size: clamp(50px, 6.5vw, 89px);  /* maior p/ lembrar o protótipo */
+  background: var(--orange-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* shelf centralizada de verdade e com respiro lateral */
+.shelf-image{
+  max-width: min(720px, 80vw);
+  height: auto;
+  display: block;
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.22);
+  z-index: 1;
+}
+
+/* copy à direita com largura confortável */
+.pin-copy{
+  max-width: 28ch;
+  font-size: clamp(14px, 2.1vw, 18px);
+  color: #EAF7F8;
+}
+
+/* responsivo: empilhar (título → shelf → copy) e centralizar textos */
+@media (max-width: 991.98px){
+  .section-pin{ border-radius: 56px; }
+  .pin-grid{ align-items: start; }
+  .pin-title, .pin-copy{ text-align: center; }
+  .pin-copy{ margin: 8px auto 0; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
