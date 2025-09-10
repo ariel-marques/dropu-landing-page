@@ -284,6 +284,8 @@ body{
   width: clamp(180px, 32vw, 280px);  /* tamanho responsivo */
   aspect-ratio: 452/592;
   margin: 0 auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent; 
 }
 
 /* cada file ocupa a área e é posicionada via transform */
@@ -298,11 +300,11 @@ body{
   }
 
 /* offsets iniciais para criar “escadinha” (ajuste fino se quiser) */
-.files-slider .file:nth-child(1){ transform: translate(-0%, -7%);     z-index: 5; }
-.files-slider .file:nth-child(2){ transform: translate(10%, -7%);     z-index: 4; }
-.files-slider .file:nth-child(3){ transform: translate(-10%, -7%);     z-index: 3; }
-.files-slider .file:nth-child(4){ transform: translate(-20%, -7%);     z-index: 2; }
-.files-slider .file:nth-child(5){transform: translate(20%, -7%);     z-index: 1; }
+.files-slider .file:nth-child(1){ transform: translate(-20%, -0%);     z-index: 5; }
+.files-slider .file:nth-child(2){ transform: translate(-10%, -1%);     z-index: 4; }
+.files-slider .file:nth-child(3){ transform: translate(-0%, -2%);      z-index: 3; }
+.files-slider .file:nth-child(4){ transform: translate(10%, -3%);      z-index: 2; }
+.files-slider .file:nth-child(5){ transform: translate(20%, -4%);      z-index: 1; }
 
 /* mobile: sem animação, mas mantém a composição */
 @media (max-width: 991.98px){
