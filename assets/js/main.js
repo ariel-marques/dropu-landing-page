@@ -80,29 +80,67 @@ tl.to([".macbook-frame", ".finder-window", ".dropu-shelf"], {
     gsap.killTweensOf(".files-slider .file");
   });
 
- // feedback real de clique + suporte a teclado
-  const keys = document.querySelectorAll('.keycap');
 
-  // mouse/touch
-  keys.forEach(k => {
-    k.addEventListener('mousedown', () => k.classList.add('is-pressed'));
-    k.addEventListener('mouseup',   () => k.classList.remove('is-pressed'));
-    k.addEventListener('mouseleave',() => k.classList.remove('is-pressed'));
-    k.addEventListener('touchstart',() => k.classList.add('is-pressed'), {passive:true});
-    k.addEventListener('touchend',  () => k.classList.remove('is-pressed'));
+
+
+// feedback real de clique + suporte a teclado para as keycaps
+// Keycaps: feedback real + reconhecimento dinâmico (macOS modifiers)
+(function () {
+  const scope = document.querySelector('.section-shortcut') || document;
+  const keycaps = [...scope.querySelectorAll('.keycap')];
+  if (!keycaps.length) return;
+
+  // Lê o "rótulo" da tecla: usa data-combo, senão o texto da .legend
+  const getLabel = (el) =>
+    (el.dataset.combo || el.querySelector('.legend')?.textContent || '')
+      .trim();
+
+  // Predicados para os modificadores do macOS
+  const MOD = {
+    '⌘': (e) => e.metaKey || e.key === 'Meta',
+    '⌥': (e) => e.altKey  || e.key === 'Alt',
+    '⇧': (e) => e.shiftKey|| e.key === 'Shift',
+    '⌃': (e) => e.ctrlKey || e.key === 'Control'
+  };
+
+  // Compara um evento com um rótulo (símbolo ou caractere)
+  const matches = (label, e) => {
+    if (!label) return false;
+    // Se for um modificador conhecido, usa o predicado
+    if (MOD[label]) return MOD[label](e);
+    // Caso contrário, compara a tecla "pura" (Z, C, V, etc.)
+    return (e.key || '').toUpperCase() === label.toUpperCase();
+  };
+
+  // Helpers de UI/ARIA
+  const setPressed = (el, on) => {
+    el.classList.toggle('is-pressed', !!on);
+    el.setAttribute('aria-pressed', on ? 'true' : 'false');
+  };
+
+  // Mouse/Touch
+  keycaps.forEach((k) => {
+    k.addEventListener('mousedown', () => setPressed(k, true));
+    k.addEventListener('mouseup',   () => setPressed(k, false));
+    k.addEventListener('mouseleave',() => setPressed(k, false));
+    k.addEventListener('touchstart',() => setPressed(k, true), { passive: true });
+    k.addEventListener('touchend',  () => setPressed(k, false));
+    // acessibilidade inicial
+    if (!k.hasAttribute('aria-pressed')) k.setAttribute('aria-pressed', 'false');
+    if (!k.hasAttribute('aria-label'))   k.setAttribute('aria-label', `Key ${getLabel(k)}`);
   });
 
-  // mapear teclado físico para acender a tecla correspondente (fun little touch)
-  const map = { 'Meta':'⌘', 'z':'Z', 'c':'C', 'v':'V' };
-  window.addEventListener('keydown', (e) => {
-    const label = map[e.key] || map[e.key.toLowerCase()];
-    if(!label) return;
-    const btn = [...keys].find(k => k.dataset.combo === label);
-    if(btn){ btn.classList.add('is-pressed'); }
-  });
-  window.addEventListener('keyup', (e) => {
-    const label = map[e.key] || map[e.key.toLowerCase()];
-    if(!label) return;
-    const btn = [...keys].find(k => k.dataset.combo === label);
-    if(btn){ btn.classList.remove('is-pressed'); }
-  });
+  // Teclado físico: acende a(s) tecla(s) que combinam com o evento
+  const onKey = (e, pressed) => {
+    keycaps.forEach((k) => {
+      const label = getLabel(k);
+      if (matches(label, e)) setPressed(k, pressed);
+    });
+  };
+
+  window.addEventListener('keydown', (e) => onKey(e, true));
+  window.addEventListener('keyup',   (e) => onKey(e, false));
+
+  // Limpa estado ao perder o foco da janela (evita “presas”)
+  window.addEventListener('blur', () => keycaps.forEach((k) => setPressed(k, false)));
+})();
