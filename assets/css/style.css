@@ -244,8 +244,8 @@ body{
   z-index: 1;              /* fica acima da anterior */
   margin-top: clamp(-89px, -6vw, -80px);  /* puxa para cima */
   background: #1E64A3;
-  border-top-left-radius: 80px;
-  border-top-right-radius: 80px;
+  border-top-left-radius: 56px;
+  border-top-right-radius: 56px;
   padding-block: clamp(60px, 10vw, 100px);
 }
 
@@ -348,8 +348,6 @@ body{
   max-width: min(720px, 80vw);
   height: auto;
   display: block;
-  border-radius: 22px;
-  box-shadow: 0 10px 24px rgba(0,0,0,.22);
   z-index: 1;
 }
 
