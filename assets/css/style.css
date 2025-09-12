@@ -210,7 +210,7 @@ body{
 .display-gradient{
   font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   font-size: clamp(50px, 6.5vw, 89px);
   margin: 0;
   background: var(--purpleorange-gradient);
@@ -264,7 +264,7 @@ body{
   line-height: 1.1;
   font-size: clamp(50px, 6.5vw, 89px);
   background: var(--peachpink-gradient);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -334,7 +334,7 @@ body{
 .pin-title{
   font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   font-size: clamp(50px, 6.5vw, 89px);  /* maior p/ lembrar o protótipo */
   background: var(--orange-gradient);
   -webkit-background-clip: text;
@@ -385,7 +385,7 @@ body{
 .shortcut-title{
   font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   font-size: clamp(50px, 6.5vw, 89px);
   margin: 0;
   background: var(--shortcut-blue-gradient);
