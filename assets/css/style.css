@@ -361,7 +361,7 @@ body{
 
 /* responsivo: empilhar (título → shelf → copy) e centralizar textos */
 @media (max-width: 991.98px){
-  .section-pin{ border-radius: 56px; }
+  .section-pin{ margin-bottom: clamp(-116px, -4vw, -106px); }
   .pin-grid{ align-items: start; }
   .pin-title, .pin-copy{ text-align: center; }
   .pin-copy{ margin: 8px auto 0; }
@@ -379,7 +379,7 @@ body{
   margin-bottom: clamp(-89px, -6vw, -80px);  /* puxa para cima */
   background: var(--bg);
   color: #0B0B0C;
-  padding-block: clamp(56px, 8vw, 104px);
+  padding-block: clamp(106px, 8vw, 104px);
 }
 
 /* ===== Título com as métricas do pin-title (ajustadas) ===== */
