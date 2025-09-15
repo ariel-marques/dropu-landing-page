@@ -41,6 +41,19 @@ body{
   text-rendering: optimizeLegibility;
 }
 
+/* GSAP ScrollTrigger */
+.reveal-up,
+.reveal-down,
+.reveal-left,
+.reveal-right,
+.reveal-zoom,
+.reveal-fade { opacity: 0; will-change: transform, opacity; }
+
+.btn {
+    border-radius: 63px !important;
+    width: 280px !important;
+    padding: 15px !important;
+}
 /* Wrapper: só padding externo da seção */
 .hero-wrap{
   padding: var(--hero-frame);
@@ -587,5 +600,35 @@ body{
 .next-section {
   padding-block: 16vh;
   background: #ffffff;
+}
+
+
+/* SVG cobre toda a hero, ancorado top-left e sem deformar */
+.footer-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;          /* ocupa toda a largura da seção */
+  height: auto;         /* mantém a proporção original */
+  min-height: 100%;     /* garante que cobre a altura da hero */
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Footer */
+.footer-section {
+  background-color: #0B0B0C;
+  color: #ccc;
+}
+
+.footer-link {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  color: #fff;
 }
 
