@@ -150,37 +150,54 @@ tl.to([".macbook-frame", ".finder-window", ".dropu-shelf"], {
 gsap.registerPlugin(ScrollTrigger);
 
 (function () {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return; // respeita acessibilidade
+  // Se você quer respeitar reduce-motion, deixe true. Se quer animar mesmo assim, ponha false.
+  const honorReducedMotion = true;
+  const reduce = honorReducedMotion && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // util: cria um trigger para uma coleção de elementos (batelada)
-  function makeBatch(selector, tweenFrom, extra = {}) {
+  // coletores
+  const selectors = [
+    '.reveal-up', '.reveal-down', '.reveal-left',
+    '.reveal-right', '.reveal-zoom', '.reveal-fade'
+  ];
+  const all = document.querySelectorAll(selectors.join(','));
+
+  // aplica o “estado inicial” só se houver GSAP ativo
+  all.forEach(el => el.classList.add('reveal-hide'));
+
+  if (reduce) {
+    // acessibilidade: mostra tudo sem animar
+    all.forEach(el => el.classList.remove('reveal-hide'));
+    return;
+  }
+
+  // helper: batch por tipo com tween adequado
+  function makeBatch(selector, fromVars, toVars, opts = {}) {
     const defaults = { duration: 0.7, ease: 'power2.out' };
+    const stagger = opts.stagger ?? 0.08;
 
     ScrollTrigger.batch(selector, {
-      start: 'top 80%',       // quando 20% abaixo do topo do viewport
-      once: true,             // anima apenas 1x
+      start: 'top 80%',
+      once: true,
       onEnter: (batch) => {
         batch.forEach((el, i) => {
-          const delay = parseFloat(el.dataset.delay || 0) + i * (extra.stagger || 0);
+          const delay = parseFloat(el.dataset.delay || 0) + i * stagger;
           gsap.fromTo(
             el,
-            tweenFrom,
-            { ...defaults, delay, ...extra.to }
+            fromVars,
+            { ...defaults, ...toVars, delay, onStart: () => el.classList.remove('reveal-hide') }
           );
         });
-      },
+      }
     });
   }
 
-  // reveals comuns
-  makeBatch('.reveal-up',    { y: 24,  opacity: 0 }, { to: { y: 0, opacity: 1 }, stagger: 0.08 });
-  makeBatch('.reveal-down',  { y: -24, opacity: 0 }, { to: { y: 0, opacity: 1 }, stagger: 0.08 });
-  makeBatch('.reveal-left',  { x: -28, opacity: 0 }, { to: { x: 0, opacity: 1 }, stagger: 0.08 });
-  makeBatch('.reveal-right', { x: 28,  opacity: 0 }, { to: { x: 0, opacity: 1 }, stagger: 0.08 });
-  makeBatch('.reveal-zoom',  { scale: 0.94, opacity: 0 }, { to: { scale: 1, opacity: 1 }, stagger: 0.06 });
-  makeBatch('.reveal-fade',  { opacity: 0 }, { to: { opacity: 1 }, stagger: 0.08 });
+  makeBatch('.reveal-up',    { y: 24,  opacity: 0 }, { y: 0, opacity: 1 });
+  makeBatch('.reveal-down',  { y: -24, opacity: 0 }, { y: 0, opacity: 1 });
+  makeBatch('.reveal-left',  { x: -28, opacity: 0 }, { x: 0, opacity: 1 });
+  makeBatch('.reveal-right', { x: 28,  opacity: 0 }, { x: 0, opacity: 1 });
+  makeBatch('.reveal-zoom',  { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1 }, { stagger: 0.06 });
+  makeBatch('.reveal-fade',  { opacity: 0 }, { opacity: 1 });
 
-  // atualiza ao carregar imagens/fonts
+  // garante que nada fique preso invisível
   window.addEventListener('load', () => ScrollTrigger.refresh());
 })();

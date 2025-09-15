@@ -47,7 +47,13 @@ body{
 .reveal-left,
 .reveal-right,
 .reveal-zoom,
-.reveal-fade { opacity: 0; will-change: transform, opacity; }
+.reveal-fade {
+  will-change: transform, opacity;
+}
+
+/* Só fica invisível quando o JS aplicar .reveal-hide */
+.reveal-hide { opacity: 0; }
+
 
 .btn {
     border-radius: 63px !important;
