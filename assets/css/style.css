@@ -319,7 +319,8 @@ body{
   margin-top: clamp(-89px, -6vw, -80px);  /* puxa para cima */
   margin-bottom: clamp(-89px, -6vw, -80px);  /* puxa para cima */
   background: var(--pin-green);
-  border-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-bottom-left-radius: 80px;
   padding-block: clamp(56px, 8vw, 104px);
   overflow: hidden;
 }
