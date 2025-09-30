@@ -633,3 +633,76 @@ body{
   color: #fff;
 }
 
+
+/* 2) Header da página (caixa rosa + título com gradiente) */
+.bg-header-box{
+  background:#F4ADAD;
+  border-radius:1rem;
+  padding:2rem;
+  margin-bottom:2rem;
+}
+.title-header{
+  background:#54bdb3;               /* pode trocar pelo gradiente da marca se quiser */
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  display:inline-block;
+  font-weight:800;
+}
+
+/* 3) Sidebar de navegação (Help) */
+.sidebar{ position:sticky; top:100px; }
+.sidebar a{
+  display:block;
+  margin-bottom:.5rem;
+  font-weight:500;
+  color:#007AFF;
+  text-decoration:none;
+}
+.sidebar a:hover{ text-decoration:underline; }
+.active-link{
+  font-weight:700;
+  color:#F4ADAD;
+}
+
+/* Em mobile, sidebar vira bloco normal */
+@media (max-width:768px){
+  .sidebar{ position:static; margin-bottom:2rem; text-align:center; }
+}
+
+/* 4) Títulos e texto das seções */
+.section-title{
+  font-size:2rem;
+  margin-top:3rem;
+  margin-bottom:1rem;
+  font-weight:700;
+}
+.section-description{
+  font-size:1.1rem;
+  color:#333;
+}
+
+/* 5) Imagens de ajuda (prints) */
+.help-img{
+  max-width:100%;
+  border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  margin:1.5rem 0;
+}
+
+/* 6) Âncoras internas: compensa header fixo */
+.anchor-link{ scroll-margin-top:100px; }
+
+/* 7) Footer básico */
+.footer-section{ background:#1E1E23; color:#ccc; }
+.footer-link{ color:#aaa; text-decoration:none; }
+.footer-link:hover{ color:#fff; text-decoration:underline; }
+
+/* 8) (Opcional) Cards do “Why” */
+.feature-box{
+  background:#fff;
+  border-radius:1rem;
+  box-shadow:0 0 8px rgba(0,0,0,.05);
+  padding:2rem;
+  height:100%;
+}
+.icon{ font-size:2rem; color:#0E62FF; margin-bottom:1rem; }

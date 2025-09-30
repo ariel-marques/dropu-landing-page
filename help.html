@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Head padrão Shelfinder -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="canonical" href="https://shelfinder.app/help">
+
+  <title>Help · Shelfinder</title>
+  <meta name="description" content="Install, allow permissions, and master the basics of Shelfinder.">
+  <meta name="keywords" content="Shelfinder help, macOS, permissions, install">
+  <meta name="author" content="Ariel Marques Aguiar">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Help · Shelfinder">
+  <meta property="og:description" content="Install, allow permissions, and master the basics of Shelfinder.">
+  <meta property="og:url" content="https://shelfinder.app/help">
+  <meta property="og:image" content="https://shelfinder.app/assets/images/og-shelfinder.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Help · Shelfinder">
+  <meta name="twitter:description" content="Install, allow permissions, and master the basics of Shelfinder.">
+  <meta name="twitter:image" content="https://shelfinder.app/assets/images/og-shelfinder.jpg">
+
+  <meta name="theme-color" content="#FF9FB6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#FF9FB6" media="(prefers-color-scheme: dark)">
+
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' https:;
+    script-src  'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+    style-src   'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+    img-src     'self' data: https:;
+    font-src    'self' data: https:;
+    connect-src 'self';
+    frame-src   'self';
+    base-uri    'self';
+    form-action 'self';
+  ">
+
+  <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="/assets/js/main.js"></script>
+  <style>
+    body {
+      background: #fefefe;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="py-5">
+    <div class="container">
+      <div class="pb-4">
+        <a href="/" class="d-inline-flex align-items-center text-decoration-none" style="gap:.5rem;">
+          <span class="fw-medium">← Back to home</span>
+        </a>
+      </div>
+
+      <div class="bg-header-box text-center">
+        <h1 class="display-5 mb-3"><span class="title-header">Need help getting started?</span></h1>
+        <p class="text-dark mb-0">Install, allow permissions, and master the basics of Shelfinder.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 sidebar">
+          <nav>
+            <a href="#installation">🔽 Installation</a>
+            <a href="#permissions">🔐 Permissions</a>
+            <a href="#shortcut">🎹 Global Shortcut</a>
+            <a href="#faq">💡 Common Questions</a>
+          </nav>
+        </div>
+
+        <div class="col-lg-9">
+
+          <!-- Installation -->
+          <section id="installation" class="anchor-link aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+            <h2 class="section-title">🔽 How to Install</h2>
+            <p class="section-description">
+              After downloading the app, double-click the <strong>.zip</strong> file to extract <strong>Shelfinder.app</strong>.
+              Then, drag <strong>Shelfinder.app</strong> to your <strong>Applications</strong> folder.
+              If macOS shows a security prompt, right-click the app and select “Open” to confirm execution.<br>
+              <strong>If you see a security warning, follow the steps below to open Shelfinder.</strong>
+            </p>
+            <!-- <img src="assets/images/help-install.png" alt="Installation UI" class="help-img"> -->
+          </section>
+
+          <!-- Permissions -->
+          <section id="macos-security-warning" class="anchor-link aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+            <h2 class="section-title">🛡️ macOS Security Warning: How to Open Shelfinder</h2>
+            <p class="section-description">
+              Because Shelfinder is distributed independently, you may see a warning when opening the app for the first time. Here’s how to proceed:
+            </p>
+            <ol class="text-start px-3" style="font-size:1.08em;line-height:1.9;">
+              <li>
+                <strong>After moving Shelfinder to your Applications folder, double-click to open it.</strong><br>
+                <img src="assets/images/apple-alert-1.png" alt="Shelfinder.app Not Opened" class="img-fluid my-3" style="max-width:400px;">
+                <div class="small text-muted mb-3">
+                  If you see "<strong>Shelfinder.app” Not Opened</strong>", click <strong>Done</strong>.
+                </div>
+              </li>
+              <li>
+                <strong>Open <u>System Settings &gt; Privacy &amp; Security</u>.</strong><br>
+                <img src="assets/images/apple-alert-2.png" alt="Open Anyway in macOS Security" class="img-fluid rounded my-3" style="max-width:700px; width:100%; height:auto;">
+                <div class="small text-muted mb-3">
+                  Scroll down and you'll see an option: "<strong>Shelfinder.app was blocked to protect your Mac</strong>". Click <strong>Open Anyway</strong>.
+                </div>
+              </li>
+              <li>
+                <strong>Try to open Shelfinder again.</strong><br>
+                <img src="assets/images/apple-alert-3.png" alt="Open Anyway Final Step" class="img-fluid rounded my-3" style="max-width:400px;">
+                <div class="small text-muted mb-3">
+                  You’ll see another dialog. Click <strong>Open Anyway</strong> to confirm. Shelfinder will now launch normally.
+                </div>
+              </li>
+            </ol>
+            <div class="alert alert-info small mt-3" style="background:rgba(255,255,255,0.1);border:none;">
+              <strong>Why does this happen?</strong> This is a standard macOS warning for apps not downloaded from the App Store or signed by Apple. Shelfinder is 100% safe and privacy-focused.
+            </div>
+          </section>
+
+          <!-- Shortcut -->
+          <section id="shortcut" class="anchor-link aos-init" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+            <h2 class="section-title">⌨️&ZeroWidthSpace; Global Shortcut</h2>
+            <p class="section-description">
+              Pick your own global shortcut — combine keys like Command (⌘), Option (⌥), Control (⌃), Shift (⇧), and any letter or number.<br>
+              You can change it anytime in Preferences.
+            </p>
+            <!-- <img src="assets/images/help-shortcut.png" alt="Shortcut Config" class="help-img"> -->
+          </section>
+
+          <!-- Plans -->
+          <section id="plans" class="anchor-link aos-init" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+            <h2 class="section-title">📦 Free vs Pro</h2>
+            <p class="section-description">
+              The free version gives you access to the last 3 copied items.
+              Upgrade to Pro to unlock extended history, full content types, and advanced features.
+            </p>
+          </section>
+
+          <!-- FAQ -->
+          <section id="faq" class="anchor-link aos-init" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+            <h2 class="section-title">💡 Common Questions</h2>
+
+            <p class="section-description"><strong>Q: The app doesn’t open after I install it.</strong><br>
+              A: Right-click the app, choose “Open” once to bypass macOS security.
+            </p>
+
+            <p class="section-description"><strong>Q: The global shortcut doesn't respond.</strong><br>
+              A: Check if Shelfinder has Accessibility permissions enabled in your system settings.
+            </p>
+
+            <p class="section-description"><strong>Q: My clipboard history is not updating.</strong><br>
+              A: Ensure Input Monitoring is granted, then restart the app.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section py-5 text-center text-white">
+    <div class="container py-4">
+      <a href="/" class="btn btn-primary btn-lg mb-5">Buy Shelfinder</a>
+      <ul class="list-inline small text-muted mb-4">
+        <li class="list-inline-item"><a class="footer-link" href="/terms">Terms of Service</a></li>
+        <li class="list-inline-item text-white">|</li>
+        <li class="list-inline-item"><a class="footer-link" href="/privacy">Privacy Policy</a></li>
+        <li class="list-inline-item text-white">|</li>
+        <li class="list-inline-item"><a class="footer-link" href="/refund">Refund Policy</a></li>
+        <li class="list-inline-item text-white">|</li>
+        <li class="list-inline-item"><a class="footer-link" href="/why">Why Shelfinder?</a></li>
+      </ul>
+      <p class="text-white small mb-0">Made with <span style="color:#f87171;">❤️</span> by Ariel Marques · Shelfinder © 2025</p>
+    </div>
+  </footer>
+</body>
+
+</html>
